@@ -4,7 +4,7 @@ import Card from "./Card";
 import "./tailwind.output.css";
 import "./style.css";
 
-class App extends Component {
+class CardList extends Component {
   constructor() {
     super();
     this.state = {
@@ -16,12 +16,20 @@ class App extends Component {
   handleChange = (event) => {
     this.setState({search:event.target.value})
   };
+  componentDidMount() {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then(users=>(this.setState({
+          robots:users
+    })));
+  }
 
-  componentDidMount(){
+  componentDidUpdate(){
     const filter=this.state.robots.filter(robot=>{
         return robot.name.toLowerCase().includes(this.state.search.toLowerCase)
         
     })
+    console.log(filter)
   }
   
 
@@ -54,4 +62,4 @@ class App extends Component {
 const year=new Date().getFullYear()
 
 
-export default App;
+export default CardList;
