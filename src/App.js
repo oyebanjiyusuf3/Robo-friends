@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./tailwind.output.css";
 import "./style.css";
-import SearchField from "./SearchField";
-import CardList from "./CardList";
-import Loading from './Loading'
+import SearchField from "./components/SearchField";
+import CardList from "./components/CardList";
+import Loading from './components/Loading'
 
 class App extends Component {
   constructor() {
