@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import Card from "./Card";
-// import { robots } from "./robots";
 import "./tailwind.output.css";
 import "./style.css";
+import SearchField from "./SearchField";
+import CardList from "./CardList";
+import Loading from './Loading'
 
 class App extends Component {
   constructor() {
@@ -10,43 +11,42 @@ class App extends Component {
     this.state = {
       robots: [],
       search: "",
+      loading:false,
     };
   }
 
   handleChange = (event) => {
-    this.setState({search:event.target.value})
+    this.setState({
+      search:event.target.value})
   };
 
-  componentDidMount(){
-    const filter=this.state.robots.filter(robot=>{
-        return robot.name.toLowerCase().includes(this.state.search.toLowerCase)
-        
-    })
-  }
-  
+  componentDidMount() {
+    this.setState({loading:true,})
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then(users=>(this.setState({
+          robots:users,
+          // loading:false,
+    })));
+  }  
 
   render() {
-    const cardComponents = this.state.robots.map((rob) => (
-      <Card key={rob.id} robots={rob} />
-    ));
-    
+    const filteredRobot=this.state.robots.filter(robot=>{
+            return robot.name.toLowerCase().includes(this.state.search.toLowerCase())    
+        })  
+        
     return (
       <div>
-        <h1>Robo Friends</h1>
-        <div className="text-center">
-          <input
-            type="text"
-            onChange={this.handleChange}
-            name="search"
-            placeholder="search your robo friends here"
-          />
-        </div>
-        <div className="displayflex text-center">
-        {cardComponents}
+        {this.state.loading ? <Loading/> : (<div> <h1>Robo Friends</h1>
+        <SearchField searchChange={this.handleChange}/>
+  
+        <CardList robots={filteredRobot}/>
           {/* <Card id={robots[0].id} name={robots[0].name} email={robots[0].email}/>
                     <Card id={robots[1].id} name={robots[1].name} email={robots[1].email}/> */}
-        </div>
-                <br/><h2>Copyright &copy;Yusuf Oyebanji {year}</h2>
+        
+                <br/><h2>Copyright &copy;Yusuf Oyebanji {year}</h2></div>
+          
+        )}
       </div>
     );
   }
