@@ -28,6 +28,10 @@ h2{
     font-weight: 500;
     text-align: center;
     text-transform: uppercase;
+    margin-top: 5px;
+}
+input{
+    margin-top: 3px;
 }
 .search{
     display: flex;
@@ -42,6 +46,8 @@ h2{
 }
 
 .loading-gif {
-    display:block;
-    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -50px 0px 0px -50px;
     }

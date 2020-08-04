@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## About Robo Friend Project
+Robo Friends App is just to demostrate my knowledge in React. I consumed Open Source API [jsonplaceholder](https://jsonplaceholder.typicode.com/users) and used a [Tailwind CSS](https://tailwindcss.com/).
+
 ## Available Scripts
 
 In the project directory, you can run:

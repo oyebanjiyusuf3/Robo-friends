@@ -26,7 +26,7 @@ class App extends Component {
       .then((response) => response.json())
       .then(users=>(this.setState({
           robots:users,
-          // loading:false,
+          loading:false,
     })));
   }  
 
@@ -37,7 +37,7 @@ class App extends Component {
         
     return (
       <div>
-        {this.state.loading ? <Loading/> : (<div> <h1>Robo Friends</h1>
+        {this.state.loading ? <Loading/> : (<div> <h1>Robot Friends</h1>
         <SearchField searchChange={this.handleChange}/>
   
         <CardList robots={filteredRobot}/>
